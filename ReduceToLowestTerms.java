@@ -6,6 +6,12 @@ public class ReduceToLowestTerms implements Problem {
     private final int denominator;
 
     private int reducedNumerator, reducedDenominator;
+	
+    public ReduceToLowestTerms() {
+		numerator = reducedNumerator = MathTools.specialSmallPrimeRand();
+		denominator = reducedDenominator = MathTools.specialSmallPrimeRand();
+		reduceToLowestTerms();
+	}
 
     public ReduceToLowestTerms(int numerator, int denominator) {
         this.numerator = reducedNumerator = numerator;
@@ -14,7 +20,12 @@ public class ReduceToLowestTerms implements Problem {
     }
 
     public Problem execute() {
-        Scanner readInput = new Scanner(System.in);
+		//if generated fraction is already in lowest terms restart with a new one	
+		if(numerator == reducedNumerator && denominator == reducedDenominator) {
+			return new ReduceToLowestTerms();
+		}
+
+		Scanner readInput = new Scanner(System.in);
         System.out.println("What is the fraction " + this.originalFraction() + " after reducing it to lowest terms?");
         System.out.println("First enter the numerator:");
         int userNum = readInput.nextInt();
@@ -29,7 +40,11 @@ public class ReduceToLowestTerms implements Problem {
         }
 
         //user's fraction is correct but not in lowest terms
-        else if(this.toString().equals(userAnswer.toString())) {
+		//also checks that user didn't just re-enter the given fraction without reduction
+        else if(this.toString().equals(userAnswer.toString())
+			&& !(this.originalFraction().equals(userAnswer.originalFraction()))) {
+
+            System.out.println("You just reduced " + this.originalFraction() + " to " + userNum + "/" + userDenom + ".");
             System.out.println("You're on the right track but you still have to reduce to lowest terms!");
             return userAnswer;
         }

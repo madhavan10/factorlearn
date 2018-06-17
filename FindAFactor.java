@@ -41,8 +41,11 @@ public class FindAFactor implements Problem {
             if(userFactor == MathTools.gcd(numerator, denominator)) {
                 return new CorrectState();
             }
-            else 
-                return new ReduceToLowestTerms(userNum, userDenom);
+            else { 
+            	System.out.println("You just reduced " + numerator + "/" + denominator + " to " + userNum + "/" + userDenom + ".");
+            	System.out.println("You're on the right track but you still have to reduce to lowest terms!");
+		return new ReduceToLowestTerms(userNum, userDenom);
+	    }
         }
 
         else {
@@ -52,7 +55,7 @@ public class FindAFactor implements Problem {
     }
 
     private void createFactorList() {
-        for(int i = 2; i <= 19; i++) {
+        for(int i = 2; i <= Math.min(numerator, denominator); i++) {
             if(numerator % i == 0 && denominator % i == 0) {
                 factorList.add(i);
             }
