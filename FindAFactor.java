@@ -44,8 +44,8 @@ public class FindAFactor implements Problem {
             else { 
             	System.out.println("You just reduced " + numerator + "/" + denominator + " to " + userNum + "/" + userDenom + ".");
             	System.out.println("You're on the right track but you still have to reduce to lowest terms!");
-		return new ReduceToLowestTerms(userNum, userDenom);
-	    }
+				return new ReduceToLowestTerms(userNum, userDenom);
+			}
         }
 
         else {
