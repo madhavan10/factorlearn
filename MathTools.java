@@ -18,7 +18,6 @@ public class MathTools {
     
     //Draw 2 primes with replacement from {2, 3, 5}
     //Draw one prime from {2, 3, 5, 7}
-    //Randomly return either product or its negative
     public static int specialSmallPrimeRand() {
         Random gen = new Random();
         
@@ -29,11 +28,7 @@ public class MathTools {
         product *= smallPrimeArray[gen.nextInt(3)];
         product *= smallPrimeArray[gen.nextInt(3)];
 
-	int sign = gen.nextInt(2);
-	if(sign == 0) {
-		return product * -1;
-	}
-	else return product;
+		return product;
     }
 
 
